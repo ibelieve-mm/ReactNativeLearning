@@ -10,5 +10,47 @@
 </head>
 <body>
 
+<div id="div01"></div>
+
+<script type="text/babel">
+
+    var Timer = React.createClass({
+
+        /**
+         * 初始状态
+         */
+        getInitialState:function(){
+           return {elasped:0};
+        },
+
+        tick:function(){
+            this.setState({elasped:this.state.elasped+1});
+        },
+
+        /**
+         * 组件完成装载
+         */
+        componentDidMount:function(){
+            this.interval=setInterval(this.tick,1000);
+        },
+
+        /**
+         * 组件将被卸载，清除定时器
+         */
+        componentWillUnmount:function(){
+            clearInterval(this.interval);
+        },
+
+        /**
+         * 渲染视图
+         */
+        render:function(){
+            return <div>Second Elasped:{this.state.elasped}</div>;
+        },
+    });
+
+    ReactDOM.render(<Timer/>,document.getElementById("div01"));
+</script>
+
 </body>
 </html>
