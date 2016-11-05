@@ -14,29 +14,37 @@
 
 <script type="text/babel">
 
-    var Parent = React.createClass(
+    var ParentVar = React.createClass(
+            {
+                click:function () {
+//                    this.refs.child.getDOMNode().style.color="red";//0.14及其之前版本之前的写法
+                    this.refs.child.style.color="red";
+                },
 
-         click:function () {
-            this.refs.child.getDOMNode().style.color="red";
-        },
+                moverOver:function () {
+                    alert("鼠标在上面");
+                },
 
-        render:function(){
-            return (
-                <div onClick={this.click}>
-                    Parent is:
-                    <Child name={this.props.name} ref="child"></Child>
-                </div>
-            );
-        },
+                render:function(){
+                    return (
+                            <div  onMouseOver={this.click}>
+                                Parent is:
+                                <ChildVar name={this.props.name} ref="child"></ChildVar>
+                            </div>
+                    );
+                },
+            }
     );
 
-    var Child=React.createClass(
-        render:function(
-             return (<span>{this.props.name}</span>);
-        ),
+    var ChildVar=React.createClass(
+            {
+                render:function(){
+                    return (<span>{this.props.name}</span>);
+                },
+            }
     );
 
-    ReactDOM.render(<Parent name="React语法基础"/>,document.getElementById("demo"));
+    ReactDOM.render(<ParentVar name="React语法基础"/>,document.getElementById("demo"));
 </script>
 
 </body>
